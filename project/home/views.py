@@ -29,7 +29,7 @@ def home():
         right_subject = left_subject + ' twitter bot'
     elif fork==2:
         # compare two twitter bots
-
+        pass
     return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
 
 def generate_fake_tweet(subject_handle):
