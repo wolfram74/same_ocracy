@@ -11,7 +11,7 @@ ARCHIVES = './project/assets/%s_tweets.txt'
 
 @home_blueprint.route('/', methods=['GET'])
 def home():
-    fork = random.randint(0,1)
+    fork = random.randint(0,2)
     splitter = '*)^@'
     if fork==0:
         #identify real tweeter
@@ -29,7 +29,11 @@ def home():
         right_subject = left_subject + ' twitter bot'
     elif fork==2:
         # compare two twitter bots
-        pass
+        fig1 = random_figure()
+        fig2 = random_figure()
+        string = generate_fake_tweet(fig1.handle)
+        left_subject = '@%s twitter bot' % fig1.handle
+        right_subject = '@%s twitter bot' % fig2.handle
     return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
 
 def generate_fake_tweet(subject_handle):
