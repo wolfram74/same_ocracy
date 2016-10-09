@@ -2,7 +2,7 @@ from flask.ext.script import Manager
 from project import app
 
 manager = Manager(app)
-}
+
 @manager.command
 def list_routes():
     import urllib

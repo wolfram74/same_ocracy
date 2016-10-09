@@ -1,9 +1,20 @@
 {% block content %}
-<h1>Welcome to Sameocracy!</h1>
-<h2>The following message is from</h2>
-<div class='comparison'>
-  <p class='left'>{{left}}</p>
-  <p class='right'>{{right}}</p>
-  <p class='tweet'>{{tweet}}</p>
-</div>
+<head>
+  <link rel="stylesheet" type="text/css"
+    href= {{ url_for('static', filename='index.css') }}
+  >
+</head>
+<body>
+  <h1 class='center'>Welcome to Sameocracy!</h1>
+  <h2>Is the following tweet</h2>
+  <div class='comparison'>
+    <p class='tweet'>{{tweet}}</p>
+    <h3 class='center'> From </h3>
+    <span>
+      <p class='left'>{{left}}</p>
+      <span class='center'>Or</span>
+      <p class='right'>{{right}}</p>
+    </span>
+  </div>
+</body>
 {% endblock %}
