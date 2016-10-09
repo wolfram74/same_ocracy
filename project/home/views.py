@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, flash, url_for
+from flask import render_template, Blueprint, flash, url_for, redirect
 from markovbot import MarkovBot
 from project import db
 from project.home.models import Figure
@@ -35,6 +35,11 @@ def home():
         left_subject = '@%s twitter bot' % fig1.handle
         right_subject = '@%s twitter bot' % fig2.handle
     return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
+
+@home_blueprint.route('/next', methods=['GET'])
+def next():
+    return redirect(url_for('home.home'))
+
 
 def generate_fake_tweet(subject_handle):
     trying = True
