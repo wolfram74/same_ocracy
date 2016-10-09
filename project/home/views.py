@@ -38,6 +38,7 @@ def home():
 
 @home_blueprint.route('/next', methods=['GET'])
 def next():
+    #tracking of user responses will go here in imminent future
     return redirect(url_for('home.home'))
 
 
