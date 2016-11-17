@@ -3,6 +3,7 @@
   <link rel="stylesheet" type="text/css"
     href= {{ url_for('static', filename='index.css') }}
   >
+  <script src={{ url_for('static', filename='feedback.js') }} ></script>
 </head>
 <body>
   <h1 class='center'>Welcome to Sameocracy!</h1>
@@ -10,19 +11,19 @@
   <div class='comparison'>
     <p class='tweet'>{{tweet}}</p>
     <h3 class='center'> From </h3>
-    <span>
+    <div>
       <p class='left'>
         <a href="./next">
           {{left}}
         </a>
       </p>
-      <span class='center'>Or</span>
+      <span class='split'>Or</span>
       <p class='right'>
         <a href="./next">
           {{right}}
         </a>
       </p>
-    </span>
+    </div>
   </div>
 </body>
 {% endblock %}
