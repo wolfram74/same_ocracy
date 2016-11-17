@@ -13,6 +13,7 @@ ARCHIVES = './project/assets/%s_tweets.txt'
 def home():
     fork = random.randint(0,2)
     splitter = '*)^@'
+    choices = {}
     if fork==0:
         #identify real tweeter
         subject_model = random_figure()
@@ -34,7 +35,10 @@ def home():
         string = generate_fake_tweet(fig1.handle)
         left_subject = '@%s twitter bot' % fig1.handle
         right_subject = '@%s twitter bot' % fig2.handle
-    return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
+    # return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
+    choices['left'] = left_subject
+    choices['right'] = right_subject
+    return render_template('index.html', tweet=string, choices=choices)
 
 @home_blueprint.route('/next', methods=['GET'])
 def next():
