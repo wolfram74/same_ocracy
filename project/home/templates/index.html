@@ -12,14 +12,14 @@
     <p class='tweet'>{{tweet}}</p>
     <h3 class='center'> From </h3>
     <div>
-      <p class="left {{choices['left']['correct']}}">
-        <a href="./next">
+      <p class="left">
+        <a href="./next" class = "{{choices['left']['correct']}}">
           {{choices['left']['handle']}}
         </a>
       </p>
       <span class='split'>Or</span>
-      <p class="right {{choices['right']['correct']}}">
-        <a href="./next">
+      <p class="right">
+        <a href="./next" class="{{choices['right']['correct']}}">
           {{choices['right']['handle']}}
         </a>
       </p>
