@@ -11,6 +11,9 @@ ARCHIVES = './project/assets/%s_tweets.txt'
 
 @home_blueprint.route('/', methods=['GET'])
 def home():
+    '''
+    choices object should have left and right, which should in turn have handle and correct
+    '''
     fork = random.randint(0,2)
     splitter = '*)^@'
     choices = {}
@@ -20,24 +23,40 @@ def home():
         source = open(ARCHIVES % subject_model.handle, 'r')
         string = random.sample(source.readline().decode('utf-8').split(splitter), 1)[0]
         source.close()
-        left_subject = '@%s' % subject_model.handle
-        right_subject = left_subject + ' twitter bot'
+        left_handle = '@%s' % subject_model.handle
+        right_handle = left_handle + ' twitter bot'
+        left_subject = {'handle': left_handle, 'correct': 'correct'}
+        right_subject = {'handle': right_handle, 'correct': ''}
     elif fork ==1:
         # identify fake tweet
         subject_model = random_figure()
         string = generate_fake_tweet(subject_model.handle)
-        left_subject = '@%s' % subject_model.handle
-        right_subject = left_subject + ' twitter bot'
+        left_handle = '@%s' % subject_model.handle
+        right_handle = left_handle + ' twitter bot'
+        left_subject = {'handle': left_handle, 'correct': ''}
+        right_subject = {'handle': right_handle, 'correct': 'correct'}
     elif fork==2:
         # compare two twitter bots
         fig1 = random_figure()
         fig2 = random_figure()
         string = generate_fake_tweet(fig1.handle)
-        left_subject = '@%s twitter bot' % fig1.handle
-        right_subject = '@%s twitter bot' % fig2.handle
+
+        if random.randint(0,1)==1:
+            left_handle = '@%s twitter bot' % fig1.handle
+            right_handle = '@%s twitter bot' % fig2.handle
+            left_subject = {'handle': left_handle, 'correct': 'correct'}
+            right_subject = {'handle': right_handle, 'correct': ''}
+        else:
+            left_handle = '@%s twitter bot' % fig2.handle
+            right_handle = '@%s twitter bot' % fig1.handle
+            left_subject = {'handle': left_handle, 'correct': ''}
+            right_subject = {'handle': right_handle, 'correct': 'correct'}
+
+
     # return render_template('index.html', tweet=string, left=left_subject, right=right_subject)
     choices['left'] = left_subject
     choices['right'] = right_subject
+    choices['correct'] = 'correct'
     return render_template('index.html', tweet=string, choices=choices)
 
 @home_blueprint.route('/next', methods=['GET'])
